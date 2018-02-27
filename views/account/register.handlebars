@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/angular-block-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/css/highlight.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/loading-bar.css" />
+</head>
+<body ng-app="AuthApp">
+	<div class="container" ng-controller="RegisterController">
+		<div ng-repeat="alert in alerts" class="alert <% alert.class %>"><% alert.message %></div>
+		<form name="registerForm" ng-submit="submitRegisterForm()" class="form-horizontal" role="form">
+			<ul>
+			<li class="text-danger" ng-repeat="error in form_errors"><% error.msg %></li>
+			</ul>
+			<div class="form-group">
+				<label class="col-md-3 control-label">Name</label>
+				<div class="col-md-9">
+					<input type="text" required="required" name="name" ng-model="name">
+					<div ng-show="registerForm.name.$touched && registerForm.name.$invalid" class="text-danger">Name is required</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label">Email</label>
+				<div class="col-md-9">
+					<input type="email" required="required" name="email" ng-model="email">
+					<div ng-show="registerForm.email.$touched && registerForm.email.$error.required" class="text-danger">Email is required</div>
+					<div ng-show="registerForm.email.$touched && registerForm.email.$error.email" class="text-danger">Invalid email format</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-3 control-label">Password</label>
+				<div class="col-md-9">
+					<input type="Password" required="required" name="name" ng-model="password">
+					<div ng-show="registerform.name.$touched && registerForm.name.$error.required" class="text-danger">Password is required</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-3 col-md-12">
+					<button class="btn btn-primary btn-md">Register</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="/js/angular.min.js"></script>
+    <script src="/js/angular-route.min.js"></script>
+    <script src="/js/angular-animate.min.js"></script>
+    <script src="/js/loading-bar.js"></script>
+    <script src="/js/ui-bootstrap-tpls.min.js"></script>
+    <script src="/js/angular-block-ui.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/angular-highlightjs.min.js"></script>
+    <script src="/auth_app.js"></script>
+    <script src="/account/register_controller.js"></script>
+</body>
+</html>

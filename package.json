@@ -1,0 +1,39 @@
+{
+  "name": "authentication",
+  "version": "1.0.0",
+  "description": "Testing auth",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wai Yan Hein",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "cloudconvert": "^1.1.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.0",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "exec": "^0.2.1",
+    "express": "^4.16.2",
+    "express-form": "^0.12.6",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "express-validator": "^4.3.0",
+    "ffmpeg": "0.0.4",
+    "ffprobe": "^1.1.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "http": "0.0.0",
+    "moment": "^2.20.1",
+    "mongodb": "^3.0.0-rc0",
+    "mongoose": "^4.13.7",
+    "mongoose-paginate": "^5.0.3",
+    "node-ffprobe": "^1.2.2",
+    "node-thumbnail": "^0.13.0",
+    "randomstring": "^1.1.5",
+    "thumbnails-webvtt": "0.0.4",
+    "video-thumb": "0.0.3"
+  }
+}

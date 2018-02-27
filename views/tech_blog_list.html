@@ -1,0 +1,31 @@
+<div class="body-content">
+    <div ng-controller="BlogListController">
+
+        
+        <div class="row">
+            <div class="col-md-9">
+                <h4 class="blog-list-title">{{ pageTitle }}</h4>
+                <div class="row" ng-show="blogs.length>0">
+                    <div class="col-md-6 animated bounceInLeft" ng-repeat="blog in blogs">
+                        <article-widget></article-widget>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" ng-show="blogs.length>0">
+                        <ul uib-pagination items-per-page="recordPerPage" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+                    </div>
+                </div>
+                <div class="row" ng-show="blogs.length<1">
+                    <div class="col-md-12 text-center">
+                        <p class="no-articles-message">&ldquo; No article found &rdquo;</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+               <div>
+                   <subject-menu-widget></subject-menu-widget>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+@using TechBlog.Domain
+@{
+    
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>@AppConfig.SiteName | Coding solutions provider for Computer Science students and programming addicts.</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="@AppConfig.SiteName helps computer science students, computer programming beginners and fresh developers sharing the code and articles to solve coding errors that we were stucking during our coding time. This is a huge coding hub and the best place for programming students. CS for all. HAPPY CODING!">
+    <meta name="keywords" content="coding, computer programming, happy coding, lear programming, search coding solutions, computer science, IT, information technology, coding articles">
+    <meta name="author" content="@AppConfig.SiteName by Wai Yan Hein">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="apple-touch-icon" href="@Url.Content("~/Images/favicon.png")" />
+    <link id="favicon" rel="shortcut icon" href="@Url.Content("~/Images/favicon.png")" sizes="16x16 32x32 48x48 114x114" type="image/png" />
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/bootstrap.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/font-awesome.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/angular-block-ui.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/animate.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/highlight.min.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/loading-bar.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Site.css")" />
+    
+</head>
+<body ng-app="WebApp" block-ui="main">
+    <input type="hidden" id="csrfToken" value="@GetAntiForgeryToken();"/>
+    <input type="hidden" id="userAuthState" value="@User.Identity.IsAuthenticated"/>
+
+    <nav class="navbar navbar-fixed-top navbar-inverse main-nav-bar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">@AppConfig.SiteName</a>
+        </div>
+        <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-anchor" href="#/">Home</a></li>
+                <li><a class="nav-anchor" href="#/articles">Articles</a></li>
+                <li uib-dropdown on-toggle="">
+                    <a class="nav-anchor" uib-dropdown-toggle>
+                        Subjects
+                    </a>
+                    <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                        <li ng-repeat="item in subjects"><a href="#/articles/{{ item.UrlSegmentTitle }}/{{ item.Id }}">{{ item.Title }}</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-anchor" href="#/contact">Contact</a></li>
+                <li><a class="nav-anchor" href="#/about">About</a></li>
+
+            </ul>
+            <div role="search" class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" ng-model="searchKeyword" name="searchKeyword" placeholder="Enter keyword" class="form-control">
+                </div>
+                <button ng-click="searchBtnClick(searchKeyword)" type="button" class="btn nav-search-btn">Search</button>
+            </div>
+            <div class="navbar-right">
+                @Html.Partial("_LoginPartial")
+            </div>
+           
+        </div>
+    </nav>
+
+    <div class="{{ alert.type }} text-center" ng-repeat="alert in globalFadeAlerts"> 
+        <strong>{{ alert.msg }}</strong>
+    </div>
+
+    <div ng-view>
+
+    </div>
+
+    <div class="page-footer">
+        <div class="footer-content text-center">
+            <div class="footer-content-child">
+                <span class="footer-text">All the articles are shared by experienced developers.</span> <span class="footer-follow-us">Follow us on :</span> <a href="@AppConfig.FacebookPageUrl" class="footer-follow-anchor"><i class="fa fa-facebook-official"></i> Facebook</a>
+            </div>
+        </div>
+    </div>
+
+
+    @functions{
+        public string GetAntiForgeryToken()
+        {
+            string cookieToken, formToken;
+            AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            return cookieToken + ":" + formToken;
+        }
+    }
+
+    <script src="@Url.Content("~/Scripts/angular.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-route.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-animate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/loading-bar.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-ui/ui-bootstrap-tpls.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ng-file-upload-shim.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/ng-file-upload.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-block-ui.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/highlight.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/angular-highlightjs.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Home/default_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Home/contact_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Blog/blog_list_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Blog/blog_details_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Auth/register_dialog_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Auth/login_dialog_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Auth/reset_pass_dialog_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Auth/manage_dialog_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Auth/account_verifiy_controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/App/Auth/reset_password_controller.js")"></script>
+</body>
+</html>
